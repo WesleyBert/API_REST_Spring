@@ -1,4 +1,5 @@
-package Api_clinica.API.doctor;
+package Api_clinica.API.patient;
+
 
 import Api_clinica.API.address.Address;
 import jakarta.persistence.*;
@@ -7,35 +8,29 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "doctors")
-@Entity(name= "Doctor")
 @Getter
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Doctor {
+@Entity(name = "Patient")
+@Table(name = "patients")
+public class patient {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
+    private String cpf;
     private String phone;
-    private String crm;
-
-    @Enumerated(EnumType.STRING)
-    private Specialty specialty;
 
     @Embedded
     private Address address;
 
-    public Doctor(DataDoctorRegister data) {
-
+    public patient(DateRegisterPatient data){
         this.name = data.name();
+        this.cpf = data.cpf();
         this.email = data.email();
         this.phone = data.phone();
-        this.crm = data.crm();
-        this.specialty = data.specialty();
         this.address = new Address(data.adders());
-
     }
 }

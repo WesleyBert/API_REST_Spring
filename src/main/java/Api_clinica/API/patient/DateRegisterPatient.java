@@ -1,13 +1,12 @@
-package Api_clinica.API.doctor;
+package Api_clinica.API.patient;
 
 import Api_clinica.API.address.DateAdders;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public record DataDoctorRegister(
+public record DateRegisterPatient(
         @NotBlank
         String name,
         @NotBlank
@@ -16,11 +15,12 @@ public record DataDoctorRegister(
         @NotBlank
         String phone,
         @NotBlank
-        @Pattern(regexp = "\\d{4,6}")
-        String crm,
-        @NotNull
-        Specialty specialty,
+        @NotBlank @Pattern(regexp = "\\d{3}\\.?\\d{3}\\.?\\d{3}\\?\\d{2}")
+        String cpf,
+        @NotBlank
         @Valid
-        @NotNull
-        DateAdders adders) {
+        DateAdders adders
+) {
+
+
 }
